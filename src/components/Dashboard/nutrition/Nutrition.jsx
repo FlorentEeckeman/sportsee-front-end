@@ -6,31 +6,31 @@ import chicken from "../../../assets/Icon/nutrition/chicken";
 import apple from "../../../assets/Icon/nutrition/apple";
 import burger from "../../../assets/Icon/nutrition/burger";
 
-function Nutrition() {
+function Nutrition({ userInfo }) {
   return (
     <Div>
       <NutritionCard
         Svgicon={calorie}
-        Count={"test"}
-        Type={"test"}
+        Count={userInfo.keyData.calorieCount}
+        Type={"Calories"}
         colorIcon={"rgba(255, 0, 0, 0.07)"}
       />
       <NutritionCard
         Svgicon={chicken}
-        Count={"test"}
-        Type={"test"}
+        Count={userInfo.keyData.proteinCount}
+        Type={"Proteines"}
         colorIcon={"rgba(74, 184, 255, 0.07)"}
       />
       <NutritionCard
         Svgicon={apple}
-        Count={"test"}
-        Type={"test"}
+        Count={userInfo.keyData.carbohydrateCount}
+        Type={"Glucides"}
         colorIcon={"rgba(249, 206, 35, 0.07)"}
       />
       <NutritionCard
         Svgicon={burger}
-        Count={"test"}
-        Type={"test"}
+        Count={userInfo.keyData.lipidCount}
+        Type={"Lipides"}
         colorIcon={"rgba(253, 81, 129, 0.07)"}
       />
     </Div>

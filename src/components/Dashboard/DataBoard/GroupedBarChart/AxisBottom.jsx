@@ -3,7 +3,7 @@ export const AxisBottom = ({ xScale, innerHeight, tickFormat }) => {
   let textOffset;
 
   const data = xScale.domain().map((tickValue, index) => (
-    <>
+    <React.Fragment key={index}>
       {index === 0
         ? (textOffset = "end")
         : index !== xScale.domain().length - 1
@@ -24,7 +24,7 @@ export const AxisBottom = ({ xScale, innerHeight, tickFormat }) => {
           {index}
         </text>
       </g>
-    </>
+    </React.Fragment>
   ));
   return data;
 };

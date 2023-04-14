@@ -1,5 +1,6 @@
-import React, { useState, useCallback, useEffect, useRef } from "react";
-import ReactDOM from "react-dom";
+import React, { useState, useRef } from "react";
+import { useResizeDetector } from "react-resize-detector";
+
 import {
   extent,
   line,
@@ -11,42 +12,48 @@ import {
 } from "d3";
 import * as d3 from "d3";
 
-import { useData } from "./useData";
 import { AxisBottom } from "./AxisBottom";
 import { Marks } from "./Marks";
 import Legend from "./Legend";
 import { svgPathProperties } from "svg-path-properties";
 
-const width = 258;
 const height = 263;
 const margin = { top: 100, right: 30, bottom: 63, left: 43 };
-
-export const LineChart = () => {
-  const data = useData();
+let innerWidth = 258;
+export const LineChart = ({ userInfo }) => {
+  const data = userInfo.sessionsAverage;
   const [toolX, setToolX] = useState(null);
   const [toolY, setToolY] = useState(null);
   const [sessionTime, setSessionTime] = useState(null);
   const path = useRef(null);
+  const { width, ref } = useResizeDetector();
 
   if (!data) {
     return <pre>Loading...</pre>;
   }
+  if (width) {
+    innerWidth = width;
+  }
 
   const innerHeight = height - margin.top - margin.bottom;
-  const xValue = (d) => d.name;
-  const yValue = (d) => d.value;
+  const xValue = (d) => d.day;
+  const yValue = (d) => d.sessionLength;
 
-  const xScale = scaleTime().domain(extent(data, xValue)).range([0, width]);
+  const xScale = scaleTime()
+    .domain(extent(data, xValue))
+    .range([0, innerWidth]);
 
-  const xScaleAxis = scaleBand().domain(data.map(xValue)).range([0, width]);
+  const xScaleAxis = scaleBand()
+    .domain(data.map(xValue))
+    .range([0, innerWidth]);
 
   const yScale = scaleLinear()
     .domain([0, max(data, yValue)])
     .range([innerHeight, 0]);
 
   const lineGenerator = line()
-    .x((d) => xScale(d.name))
-    .y((d) => yScale(d.value))
+    .x((d) => xScale(d.day))
+    .y((d) => yScale(d.sessionLength))
     .curve(curveCatmullRom.alpha(1))(data);
 
   const pathSvg = new svgPathProperties(lineGenerator);
@@ -76,8 +83,8 @@ export const LineChart = () => {
     while (true) {
       target = Math.floor((beginning + end) / 2);
       var pos = pathSvg.getPointAtLength(target);
-      //console.log("Position", pos.y);
-      if ((target === end || target == beginning) && pos.x !== mouse[0]) {
+
+      if ((target === end || target === beginning) && pos.x !== mouse[0]) {
         break;
       }
       if (pos.x > mouse[0]) end = target;
@@ -91,17 +98,15 @@ export const LineChart = () => {
     setSessionTime(Math.abs(Math.trunc(yScale.invert(pos.y))));
   };
   const handleMouseMove = (e) => {
-    {
-      getCoord(e);
-    }
+    getCoord(e);
   };
   return (
-    <div style={{ zIndex: 1 }} className="svgVignette">
+    <div ref={ref} style={{ zIndex: 4 }} className="svgVignette">
       <svg
-        width={width}
+        width={innerWidth}
         height={height}
-        style={{ backgroundColor: "#FF0000" }}
-        viewBox={`0 0 ${width} ${height}`}
+        style={{ backgroundColor: "#FF0000", borderRadius: "5px" }}
+        viewBox={`0 0 ${innerWidth} ${height}`}
         preserveAspectRatio="none"
         overflow="visible"
         onMouseMove={(event) => {
@@ -130,16 +135,21 @@ export const LineChart = () => {
                       fillOpacity={1}
                     >
                       <rect
-                        transform={`translate(${-width - 5 + toolX},${
+                        transform={`translate(${-innerWidth - 5 + toolX},${
                           50 - toolY - margin.top
                         })`}
-                        width={width - toolX}
-                        x={width - toolX}
+                        width={innerWidth - toolX}
+                        x={innerWidth - toolX}
                         y={0}
                         height={100 + "%"}
                         fill="rgba(0,0,0,0.1)"
                       ></rect>
-                      <rect fill="#ffffff" width={60} height={30}></rect>
+                      <rect
+                        fill="#ffffff"
+                        width={60}
+                        height={30}
+                        style={{ zIndex: 5 }}
+                      ></rect>
                       <text
                         transform={`translate(${10},${10})`}
                         stroke="#000000"

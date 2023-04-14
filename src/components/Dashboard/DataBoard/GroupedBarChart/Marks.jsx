@@ -12,6 +12,8 @@ export const Marks = ({
   setToolX,
   setToolY,
   setToolIndex,
+  yValueCalories,
+  yValueKilogram,
 }) => {
   const ref = React.useRef(null);
   const [dataOpacity, setDataOpacity] = useState({ id: null, status: false });
@@ -66,10 +68,10 @@ export const Marks = ({
         id="lineAB"
         d={
           `M${xScaleTooltip},${innerHeight} ` + // Mx,y Move the pen to(x, y)
-          `v-${yScale(yValue(d)) - radius} ` +
+          `v-${yScale(yValueKilogram(d)) - radius} ` +
           `a ${radius},${radius} 0 0 1 ${radius},-${radius} ` +
           `a ${radius},${radius} 0 0 1 ${radius},${radius} ` +
-          `v+${yScale(yValue(d)) - radius} ` +
+          `v+${yScale(yValueKilogram(d)) - radius} ` +
           `z`
         }
         fill="#E60000"
@@ -80,10 +82,10 @@ export const Marks = ({
         id="lineAB"
         d={
           `M${xScaleTooltip + testyScale},${innerHeight} ` + // Mx,y Move the pen to(x, y)
-          `v-${yScale(yValue(d)) - radius} ` +
+          `v-${yScale(yValueCalories(d)) - radius} ` +
           `a ${radius},${radius} 0 0 1 ${radius},-${radius} ` +
           `a ${radius},${radius} 0 0 1 ${radius},${radius} ` +
-          `v+${yScale(yValue(d)) - radius} ` +
+          `v+${yScale(yValueCalories(d)) - radius} ` +
           `z`
         }
         fill="#282D30"

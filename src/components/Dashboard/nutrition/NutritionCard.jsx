@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 function NutritionCard({ Svgicon, Count, Type, colorIcon }) {
-  // console.log(colorIcon);
+  let measureType = "g";
+  if (Type === "Calories") {
+    measureType = "Kcal";
+  }
   return (
     <Div>
       <div className="nutritionCard-First">
@@ -12,7 +15,10 @@ function NutritionCard({ Svgicon, Count, Type, colorIcon }) {
       </div>
       <div className="nutritionCard-Second">
         <div className="nutritionCard-Infos">
-          <div className="nutritionCard-Infos-Data">{Count}Kcal</div>
+          <div className="nutritionCard-Infos-Data">
+            {Count}
+            {measureType}
+          </div>
           <div className="nutritionCard-Infos-Type">{Type}</div>
         </div>
       </div>

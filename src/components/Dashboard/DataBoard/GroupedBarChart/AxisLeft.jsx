@@ -12,7 +12,7 @@ export const AxisLeft = ({ yScale, tickFormat, innerHeight, innerWidth }) =>
       <text
         key={tickValue}
         style={{ textAnchor: "end", fontSize: "14px" }}
-        x={innerWidth + 70}
+        x={innerWidth + 60}
         y={innerHeight - yScale(tickValue)}
       >
         {tickFormat(tickValue)}

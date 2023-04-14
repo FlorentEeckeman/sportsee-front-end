@@ -1,6 +1,6 @@
-import React, { useState, useCallback, useEffect, createRef } from "react";
-import ReactDOM from "react-dom";
-import { csv, arc, pie, scaleBand, scaleLinear, max, format } from "d3";
+import React, { useState } from "react";
+import { useResizeDetector } from "react-resize-detector";
+import { scaleBand, scaleLinear, max, format } from "d3";
 import { useData } from "./useData";
 import { AxisBottom } from "./AxisBottom";
 import { AxisLeft } from "./AxisLeft";
@@ -10,26 +10,14 @@ import Tooltip from "./Tooltip";
 import styled from "styled-components";
 
 let innerWidth = 700;
-
 const height = 320;
 const margin = { top: 100, right: 30, bottom: 63, left: 43 };
-const useRefDimensions = (ref) => {
-  const [dimensions, setDimensions] = useState({ width: 1, height: 2 });
-  React.useEffect(() => {
-    if (ref.current) {
-      const { current } = ref;
-      const boundingRect = current.getBoundingClientRect();
-      const { width, height } = boundingRect;
-      setDimensions({ width: Math.round(width), height: Math.round(height) });
-    }
-  }, [ref]);
-  return dimensions;
-};
 
-export const GroupedBarChart = () => {
-  const data = useData();
-  const divRef = createRef();
-  const dimensions = useRefDimensions(divRef);
+export const GroupedBarChart = ({ userInfo }) => {
+  console.log(userInfo);
+  const data = userInfo.sessionsActivity;
+
+  const { width, ref } = useResizeDetector();
   const [toolIndex, setToolIndex] = useState(null);
   const [toolX, setToolX] = useState(null);
   const [toolY, setToolY] = useState(null);
@@ -39,11 +27,12 @@ export const GroupedBarChart = () => {
   }
 
   const innerHeight = height - margin.top - margin.bottom;
-  let width = innerWidth;
-  innerWidth = dimensions.width - 140;
+
+  innerWidth = width - 140;
   //innerWidth = innerWidth - 70;
-  const xValue = (d) => d.Country;
-  const yValue = (d) => d.Population;
+  const xValue = (d) => d.day;
+  const yValueCalories = (d) => d.calories;
+  const yValueKilogram = (d) => d.kilogram;
 
   const siFormat = format(".2s");
   const xAxisTickFormat = (tickValue) => siFormat(tickValue).replace("G", "");
@@ -54,46 +43,48 @@ export const GroupedBarChart = () => {
     .paddingInner(0.5);
 
   const yScale = scaleLinear()
-    .domain([max(data, yValue), 0])
+    .domain([max(data, yValueCalories), 0])
     .range([innerHeight, 0]);
 
   return (
-    <Div ref={divRef}>
-      <svg width={width + 140} height={height}>
-        <Legend marginLeft={margin.left} />
-        <g transform={`translate(${margin.left},${margin.top})`}>
-          <g>
-            <AxisBottom
-              xScale={xScale}
-              innerHeight={innerHeight}
-              tickFormat={xAxisTickFormat}
-              key={"test"}
-            />
-            <AxisLeft
-              yScale={yScale}
-              tickFormat={xAxisTickFormat}
-              innerHeight={innerHeight}
-              innerWidth={innerWidth}
-            />
+    <Div ref={ref}>
+      {width && (
+        <svg width={width} height={height}>
+          <Legend marginLeft={margin.left} innerWidth={innerWidth} />
+          <g transform={`translate(${margin.left},${margin.top})`}>
+            <g>
+              <AxisBottom
+                xScale={xScale}
+                innerHeight={innerHeight}
+                tickFormat={xAxisTickFormat}
+                key={"test"}
+              />
+              <AxisLeft
+                yScale={yScale}
+                tickFormat={xAxisTickFormat}
+                innerHeight={innerHeight}
+                innerWidth={innerWidth}
+              />
+            </g>
+            {
+              <Marks
+                data={data}
+                yScale={yScale}
+                xScale={xScale}
+                xValue={xValue}
+                yValueCalories={yValueCalories}
+                yValueKilogram={yValueKilogram}
+                tooltipFormat={xAxisTickFormat}
+                innerHeight={innerHeight}
+                innerWidth={innerWidth}
+                setToolX={setToolX}
+                setToolY={setToolY}
+                setToolIndex={setToolIndex}
+              />
+            }
           </g>
-          {
-            <Marks
-              data={data}
-              yScale={yScale}
-              xScale={xScale}
-              xValue={xValue}
-              yValue={yValue}
-              tooltipFormat={xAxisTickFormat}
-              innerHeight={innerHeight}
-              innerWidth={innerWidth}
-              setToolX={setToolX}
-              setToolY={setToolY}
-              setToolIndex={setToolIndex}
-            />
-          }
-        </g>
-      </svg>
-
+        </svg>
+      )}
       {toolIndex !== null ? (
         <Tooltip
           toolY={toolY}

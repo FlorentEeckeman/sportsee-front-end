@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DataBoard from "./DataBoard/DataBoard";
 import Nutrition from "./nutrition/Nutrition";
 import styled from "styled-components";
 
-function CoreDashboard() {
+function CoreDashboard({ userInfo }) {
   return (
     <Div>
-      <DataBoard />
-      <Nutrition />
+      <DataBoard userInfo={userInfo} />
+      <Nutrition userInfo={userInfo} />
     </Div>
   );
 }

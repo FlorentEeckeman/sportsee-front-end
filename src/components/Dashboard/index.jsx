@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TopDashboard from "./TopDashboard";
 import CoreDashboard from "./CoreDashboard";
+import { getUser } from "../../utils/dataFormat";
 
 function Dashboard() {
+  const [user, setUser] = useState();
+  useEffect(() => {
+    const fetchUser = async () => {
+      const result = await getUser(18);
+      setUser(result);
+    };
+    fetchUser();
+  }, []);
+  if (!user) {
+    return null;
+  }
   return (
     <DashboardBody>
-      <TopDashboard />
-      <CoreDashboard />
+      <TopDashboard userInfo={user} />
+      <CoreDashboard userInfo={user} />
     </DashboardBody>
   );
 }
