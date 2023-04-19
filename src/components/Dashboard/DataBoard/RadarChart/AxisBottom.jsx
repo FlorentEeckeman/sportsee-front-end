@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React from "react";
 export const AxisBottom = ({ xScale, innerHeight, tickFormat }) =>
   xScale.domain().map((tickValue, index) => (
     <g

@@ -4,7 +4,11 @@ import {
   getUserInfo,
   getUserPerformance,
 } from "../data/call";
-
+/**
+ * return the user performance
+ * @param {number} id
+ * @returns {array<number>}
+ */
 const performanceFormat = async (id) => {
   const userPerformance = await getUserPerformance(id);
   console.log("kind :", userPerformance.kind);
@@ -24,10 +28,19 @@ const performanceFormat = async (id) => {
   ];
   return result;
 };
+/**
+ * @param {object} userInfo
+ * @return {number}
+ */
 const checkScore = (userInfo) => {
   if (userInfo.score) return userInfo.score;
   else return userInfo.todayScore;
 };
+/**
+ * return all data formatted about user
+ * @param {number} id
+ * @returns {object} userInfo
+ */
 const getUser = async (id) => {
   const user = await getUserInfo(id);
   const average = await getUserAverage(id);

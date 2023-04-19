@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { getUser } from "../../../utils/dataFormat";
 import { LineChart } from "./LinearChart";
 import { RadarChart } from "./RadarChart";
 import { RadialChart } from "./RadialChart";
@@ -32,12 +31,14 @@ const Div = styled.div`
     width: 100%;
     flex-direction: row;
     column-gap: 30px;
+    padding-top: 30px;
     justify-content: space-between;
     .svgVignette {
       box-sizing: border-box;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
       border-radius: 5px;
       width: 33%;
+      overflow: hidden;
     }
     .activityBoard {
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);

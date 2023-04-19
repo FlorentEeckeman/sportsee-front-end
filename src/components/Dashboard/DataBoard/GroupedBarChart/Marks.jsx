@@ -1,21 +1,17 @@
-import React, { useState, useCallback, useEffect } from "react";
-import { csv, arc, pie, scaleBand, scaleLinear, max, format } from "d3";
+import React, { useState } from "react";
+
 export const Marks = ({
   data,
   xScale,
   yScale,
   xValue,
-  yValue,
-  tooltipFormat,
   innerHeight,
-  setTooltip,
   setToolX,
   setToolY,
   setToolIndex,
   yValueCalories,
   yValueKilogram,
 }) => {
-  const ref = React.useRef(null);
   const [dataOpacity, setDataOpacity] = useState({ id: null, status: false });
   const testyScale = xScale.bandwidth() / 2;
   const radius = 7 / 2;

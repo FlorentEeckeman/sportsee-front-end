@@ -8,7 +8,7 @@ function Dashboard() {
   const [user, setUser] = useState();
   useEffect(() => {
     const fetchUser = async () => {
-      const result = await getUser(18);
+      const result = await getUser(12);
       setUser(result);
     };
     fetchUser();
@@ -26,7 +26,7 @@ function Dashboard() {
 const DashboardBody = styled.div`
   background-color: #ffffff;
   width: 100%;
-  padding: 60px 90px 80px 100px;
+  padding: 30px 90px 80px 100px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;

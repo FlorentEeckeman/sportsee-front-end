@@ -19,7 +19,6 @@ export const RadarChart = ({ userInfo }) => {
     "Cardio",
   ];
 
-  console.log(userInfo);
   const maxValue = max(data);
   let radius = width / 3;
   let fontSizeSvg = 12;

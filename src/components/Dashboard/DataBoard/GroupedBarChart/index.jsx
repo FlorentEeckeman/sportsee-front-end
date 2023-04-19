@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useResizeDetector } from "react-resize-detector";
 import { scaleBand, scaleLinear, max, format } from "d3";
-import { useData } from "./useData";
 import { AxisBottom } from "./AxisBottom";
 import { AxisLeft } from "./AxisLeft";
 import { Marks } from "./Marks";
@@ -13,10 +12,16 @@ let innerWidth = 700;
 const height = 320;
 const margin = { top: 100, right: 30, bottom: 63, left: 43 };
 
-export const GroupedBarChart = ({ userInfo }) => {
-  console.log(userInfo);
-  const data = userInfo.sessionsActivity;
+/**
+ * @typedef {object} Props
+ * @prop {number} numberProp - A numeric example, this is required.
+ * @prop {string} [className] - Optional, you can ignore this.
+ *
+ * @extends {React.Component<Props>}
+ */
 
+export const GroupedBarChart = ({ userInfo }) => {
+  const data = userInfo.sessionsActivity;
   const { width, ref } = useResizeDetector();
   const [toolIndex, setToolIndex] = useState(null);
   const [toolX, setToolX] = useState(null);
@@ -29,7 +34,6 @@ export const GroupedBarChart = ({ userInfo }) => {
   const innerHeight = height - margin.top - margin.bottom;
 
   innerWidth = width - 140;
-  //innerWidth = innerWidth - 70;
   const xValue = (d) => d.day;
   const yValueCalories = (d) => d.calories;
   const yValueKilogram = (d) => d.kilogram;

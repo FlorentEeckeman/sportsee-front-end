@@ -1,19 +1,16 @@
-import React, { useState, useCallback, useEffect } from "react";
-import { csv, arc, pie, scaleBand, scaleLinear, max, format } from "d3";
+import React, { useState } from "react";
+
 export const Marks = ({
   data,
   xScale,
   yScale,
   xValue,
   yValue,
-  tooltipFormat,
   innerHeight,
-  setTooltip,
   setToolX,
   setToolY,
   setToolIndex,
 }) => {
-  const ref = React.useRef(null);
   const [dataOpacity, setDataOpacity] = useState({ id: null, status: false });
   const testyScale = xScale.bandwidth() / 2;
   const radius = 7 / 2;
@@ -46,12 +43,6 @@ export const Marks = ({
         height={innerHeight}
         width={xScale.bandwidth()}
         id={"svg" + i}
-        onMouseEnter={(event) => {
-          // event.currentTarget.style.fillOpacity = 1;
-        }}
-        onMouseLeave={(event) => {
-          // event.currentTarget.style.fillOpacity = 0;
-        }}
         style={{
           fill: "#C4C4C480",
           overflow: "inherit",

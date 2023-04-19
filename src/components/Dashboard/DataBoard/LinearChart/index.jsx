@@ -1,6 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { useResizeDetector } from "react-resize-detector";
-
 import {
   extent,
   line,
@@ -10,8 +9,7 @@ import {
   scaleLinear,
   max,
 } from "d3";
-import * as d3 from "d3";
-
+import { setCoord } from "./setCoord";
 import { AxisBottom } from "./AxisBottom";
 import { Marks } from "./Marks";
 import Legend from "./Legend";
@@ -25,7 +23,6 @@ export const LineChart = ({ userInfo }) => {
   const [toolX, setToolX] = useState(null);
   const [toolY, setToolY] = useState(null);
   const [sessionTime, setSessionTime] = useState(null);
-  const path = useRef(null);
   const { width, ref } = useResizeDetector();
 
   if (!data) {
@@ -57,51 +54,16 @@ export const LineChart = ({ userInfo }) => {
     .curve(curveCatmullRom.alpha(1))(data);
 
   const pathSvg = new svgPathProperties(lineGenerator);
-  const svgLine = (
-    <g>
-      <linearGradient id="linear-gradient">
-        <stop offset="0.1" stopColor="#ffffff" stopOpacity="0.5" />
-        <stop offset="1" stopColor="#ffffff" stopOpacity="1" />
-      </linearGradient>
-      <path
-        id="lineABC"
-        d={lineGenerator}
-        style={{ boxSizing: "border-box", stroke: "url(#linear-gradient)" }}
-        fill="none"
-        strokeWidth={2}
-        ref={path}
-      ></path>
-    </g>
-  );
 
-  const getCoord = (e) => {
-    var mouse = d3.pointer(e);
-    var beginning = 0,
-      end = pathSvg.getTotalLength(),
-      target = null;
-
-    while (true) {
-      target = Math.floor((beginning + end) / 2);
-      var pos = pathSvg.getPointAtLength(target);
-
-      if ((target === end || target === beginning) && pos.x !== mouse[0]) {
-        break;
-      }
-      if (pos.x > mouse[0]) end = target;
-      else if (pos.x < mouse[0]) beginning = target;
-      else {
-        break;
-      } // position found
-    }
-    setToolX(mouse[0]);
-    setToolY(pos.y);
-    setSessionTime(Math.abs(Math.trunc(yScale.invert(pos.y))));
-  };
   const handleMouseMove = (e) => {
-    getCoord(e);
+    setCoord(setToolX, setToolY, setSessionTime, yScale, pathSvg, e);
   };
   return (
-    <div ref={ref} style={{ zIndex: 4 }} className="svgVignette">
+    <div
+      ref={ref}
+      className="svgVignette"
+      style={{ zIndex: 4, overflow: "visible" }}
+    >
       <svg
         width={innerWidth}
         height={height}
@@ -121,8 +83,8 @@ export const LineChart = ({ userInfo }) => {
           <g transform={`translate(${0},${margin.top})`}>
             <AxisBottom xScale={xScaleAxis} innerHeight={innerHeight} />
 
-            {<Marks svgLine={svgLine} />}
-            {toolX && toolY && (
+            {<Marks lineGenerator={lineGenerator} />}
+            {toolX && toolX < innerWidth && (
               <>
                 {
                   <g

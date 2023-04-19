@@ -6,8 +6,6 @@ const radarDiagram = (maxValue, data, yScale, center) => {
     let path = "";
     for (let i = 0; i <= data.length; i++) {
       const r = yScale(val);
-      // console.log("value : " + data[0].values.length);
-      // console.log("r: " + r);
       const angle = (i * Math.PI * 2) / 6;
       const x = center.x + r * Math.sin(angle);
       const y = center.y + r * -Math.cos(angle);
@@ -25,6 +23,6 @@ const radarDiagram = (maxValue, data, yScale, center) => {
       />
     );
   }
-  return radarDiagram
+  return radarDiagram;
 };
 export default radarDiagram;

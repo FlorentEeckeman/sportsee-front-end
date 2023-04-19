@@ -1,6 +1,7 @@
 const radarLegend = (radius, labels, center, fontSizeSvg) => {
   let radar = [];
   let shifts;
+
   if (radius > 72) {
     shifts = [
       { x: 0, y: -15 },

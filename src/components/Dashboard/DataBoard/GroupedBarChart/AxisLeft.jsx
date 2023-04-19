@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React from "react";
 export const AxisLeft = ({ yScale, tickFormat, innerHeight, innerWidth }) =>
   yScale.ticks(3).map((tickValue) => (
     <g className="tick" key={tickValue + "g"}>

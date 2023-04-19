@@ -4,6 +4,10 @@ import Header from "./components/Header";
 import NavBar from "./components/Navbar";
 import styled from "styled-components";
 
+/**
+ * main component of react app
+ * @returns {object}
+ */
 function App() {
   return (
     <BodyDiv>
@@ -18,7 +22,6 @@ function App() {
 const BodyDiv = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
 `;
 const MainDiv = styled.div`
   display: flex;

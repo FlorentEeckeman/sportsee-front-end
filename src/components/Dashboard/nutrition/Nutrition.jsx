@@ -41,6 +41,6 @@ const Div = styled.div`
   flex-direction: column;
   flex: 1;
   height: 100%;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `;
 export default Nutrition;

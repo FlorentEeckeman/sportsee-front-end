@@ -17,5 +17,6 @@ const Div = styled.div`
   height: 100%;
   box-sizing: content-box;
   justify-content: space-evenly;
+  padding-top: 30px;
 `;
 export default CoreDashboard;

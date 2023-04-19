@@ -1,7 +1,13 @@
-import React, { useState, useCallback, useEffect } from "react";
-export const AxisBottom = ({ xScale, innerHeight, tickFormat }) => {
+import React from "react";
+/**
+ * React component of bottom axis
+ * AxisBottom
+ *@param {object} xScale
+ *@param {number} innerHeight
+ *@return {array<ReactElement>}
+ */
+export const AxisBottom = ({ xScale, innerHeight }) => {
   let textOffset;
-
   const data = xScale.domain().map((tickValue, index) => (
     <React.Fragment key={index}>
       {index === 0
@@ -26,5 +32,6 @@ export const AxisBottom = ({ xScale, innerHeight, tickFormat }) => {
       </g>
     </React.Fragment>
   ));
+  console.log(data);
   return data;
 };

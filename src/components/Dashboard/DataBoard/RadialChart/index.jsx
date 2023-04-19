@@ -12,7 +12,6 @@ export const RadialChart = ({ userInfo }) => {
   const dailyScore = userInfo.todayScore;
   const center = { x: width / 2, y: 131 };
   const score = dailyScore * 100;
-
   const yScale = scaleLinear()
     .domain([0, 1])
     .range([0, 2 * Math.PI]);
