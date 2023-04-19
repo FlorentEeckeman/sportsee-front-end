@@ -5,7 +5,10 @@ import yoga from "../../assets/Icon/dashboard/yoga";
 import swim from "../../assets/Icon/dashboard/swim";
 import bike from "../../assets/Icon/dashboard/bike";
 import halter from "../../assets/Icon/dashboard/halter";
-
+/**
+ *
+ * @returns
+ */
 function NavBar() {
   return (
     <NavBarDiv>
@@ -25,8 +28,7 @@ const NavBarDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
-  justify-content: space-around;
+  justify-content: space-evenly;
   .navbar-icon {
     display: flex;
     flex-direction: column;
