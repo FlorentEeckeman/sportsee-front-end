@@ -7,11 +7,10 @@ import {
 /**
  * return the user performance
  * @param {number} id
- * @returns {array<number>}
+ * @returns {Promise<number[]>}
  */
 const performanceFormat = async (id) => {
   const userPerformance = await getUserPerformance(id);
-  console.log("kind :", userPerformance.kind);
   let performance = {};
   for (let i = 0; i < Object.keys(userPerformance.kind).length; i++) {
     let kindType = Object.values(userPerformance.kind);
@@ -37,15 +36,14 @@ const checkScore = (userInfo) => {
   else return userInfo.todayScore;
 };
 /**
- * return all data formatted about user
+ * return all data formatted about an user
  * @param {number} id
- * @returns {object} userInfo
+ * @returns {Promise<Object>} userInfo -
  */
 const getUser = async (id) => {
   const user = await getUserInfo(id);
   const average = await getUserAverage(id);
   const activity = await getUserActivity(id);
-  console.log(user, id);
   const userInfo = {
     id: user.id,
     firstName: user.userInfos.firstName,

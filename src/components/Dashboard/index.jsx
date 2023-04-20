@@ -4,11 +4,18 @@ import TopDashboard from "./TopDashboard";
 import CoreDashboard from "./CoreDashboard";
 import { getUser } from "../../utils/dataFormat";
 
+/**
+ * Dashboard page. contain all components of Dashboard
+ * @name Dashboard
+ * @returns {ReactElement} all components of Dashboard
+ * @component
+ */
+
 function Dashboard() {
   const [user, setUser] = useState();
   useEffect(() => {
     const fetchUser = async () => {
-      const result = await getUser(12);
+      const result = await getUser(18);
       setUser(result);
     };
     fetchUser();

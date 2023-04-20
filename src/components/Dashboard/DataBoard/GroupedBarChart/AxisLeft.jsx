@@ -1,5 +1,6 @@
 import React from "react";
 export const AxisLeft = ({ yScale, tickFormat, innerHeight, innerWidth }) =>
+  // create 3 equidistant tick on left axis - horizontal line and scale
   yScale.ticks(3).map((tickValue) => (
     <g className="tick" key={tickValue + "g"}>
       <line

@@ -5,10 +5,7 @@ import yoga from "../../assets/Icon/dashboard/yoga";
 import swim from "../../assets/Icon/dashboard/swim";
 import bike from "../../assets/Icon/dashboard/bike";
 import halter from "../../assets/Icon/dashboard/halter";
-/**
- *
- * @returns
- */
+
 function NavBar() {
   return (
     <NavBarDiv>

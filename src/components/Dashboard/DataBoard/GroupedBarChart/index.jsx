@@ -13,11 +13,12 @@ const height = 320;
 const margin = { top: 100, right: 30, bottom: 63, left: 43 };
 
 /**
- * @typedef {object} Props
- * @prop {number} numberProp - A numeric example, this is required.
- * @prop {string} [className] - Optional, you can ignore this.
+ * user GroupedBard Chart page. contain the Bar Chart component
  *
- * @extends {React.Component<Props>}
+ * @name GroupedBarChart
+ * @param {Object} userInfo - user information
+ * @returns {ReactElement} the D3 visualization of all user data in D3.js charts
+ * @component
  */
 
 export const GroupedBarChart = ({ userInfo }) => {
@@ -47,7 +48,7 @@ export const GroupedBarChart = ({ userInfo }) => {
     .paddingInner(0.5);
 
   const yScale = scaleLinear()
-    .domain([max(data, yValueCalories), 0])
+    .domain([Math.max(max(data, yValueCalories), max(data, yValueKilogram)), 0])
     .range([innerHeight, 0]);
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import DataBoard from "./DataBoard/DataBoard";
 import Nutrition from "./nutrition/Nutrition";
 import styled from "styled-components";

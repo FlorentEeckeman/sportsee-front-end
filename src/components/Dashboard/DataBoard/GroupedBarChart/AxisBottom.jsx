@@ -1,13 +1,13 @@
 import React from "react";
 /**
  * React component of bottom axis
- * AxisBottom
  *@param {object} xScale
  *@param {number} innerHeight
- *@return {array<ReactElement>}
+ *@return {ReactElement[]}
  */
 export const AxisBottom = ({ xScale, innerHeight }) => {
   let textOffset;
+  // create an axis element for all band of xScale
   const data = xScale.domain().map((tickValue, index) => (
     <React.Fragment key={index}>
       {index === 0
@@ -32,6 +32,6 @@ export const AxisBottom = ({ xScale, innerHeight }) => {
       </g>
     </React.Fragment>
   ));
-  console.log(data);
+
   return data;
 };

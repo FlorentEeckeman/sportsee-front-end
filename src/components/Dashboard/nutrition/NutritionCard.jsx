@@ -1,6 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-
+/**
+ * user NutritionCard Chart page. contain the Bar Chart component
+ *
+ * @name NutritionCard
+ * @param {SVGElement} Svgicon - card icon svg
+ * @param {number} Count - number of nutriments
+ *  @param {string} Type - nutriment type
+ *  @param {string} colorIcon - card's color
+ * @returns {ReactElement} nutrition Card with specific information
+ * @component
+ */
 function NutritionCard({ Svgicon, Count, Type, colorIcon }) {
   let measureType = "g";
   if (Type === "Calories") {

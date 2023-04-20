@@ -53,6 +53,7 @@ export const LineChart = ({ userInfo }) => {
     .y((d) => yScale(d.sessionLength))
     .curve(curveCatmullRom.alpha(1))(data);
 
+  //for get the length of lineGenerator
   const pathSvg = new svgPathProperties(lineGenerator);
 
   const handleMouseMove = (e) => {
