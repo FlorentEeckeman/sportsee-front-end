@@ -10,25 +10,13 @@ To install and run SportSee on your local machine, follow the steps below:
 
 https://github.com/FlorentEeckeman/sportsee-front-end
 
-### Navigate to the project directory:
-
-cd sportsee
-
 ### Install dependencies:
 
 npm install
 
-or
-
-yarn install
-
 ### Launch the application in development mode:
 
 npm start
-
-or
-
-yarn start
 
 The application will be accessible at http://localhost:3000 in your browser.
 
