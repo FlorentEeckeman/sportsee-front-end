@@ -17,12 +17,13 @@ const margin = { top: 100, right: 30, bottom: 63, left: 43 };
  *
  * @name GroupedBarChart
  * @param {Object} userInfo - user information
- * @returns {ReactElement} the D3 visualization of all user data in D3.js charts
+ * @returns {ReactElement} the D3 visualization of user activity
  * @component
  */
 
 export const GroupedBarChart = ({ userInfo }) => {
   const data = userInfo.sessionsActivity;
+  //hook for get div with for responsive positioning
   const { width, ref } = useResizeDetector();
   const [toolIndex, setToolIndex] = useState(null);
   const [toolX, setToolX] = useState(null);

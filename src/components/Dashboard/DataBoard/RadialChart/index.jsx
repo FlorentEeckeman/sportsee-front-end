@@ -6,10 +6,19 @@ import Legend from "./Legend";
 const height = 263;
 const x = 87;
 const y = 97;
-
+/**
+ * user RadialChart Chart page. contain the Radial Chart component
+ *
+ * @name RadialChart
+ * @param {Object} userInfo - user information
+ * @returns {ReactElement} the D3 visualization of user daily score
+ * @component
+ */
 export const RadialChart = ({ userInfo }) => {
+  //hook for get div with for responsive positioning
   const { width, ref } = useResizeDetector();
   const dailyScore = userInfo.todayScore;
+  //center of the chart
   const center = { x: width / 2, y: 131 };
   const score = dailyScore * 100;
   const yScale = scaleLinear()

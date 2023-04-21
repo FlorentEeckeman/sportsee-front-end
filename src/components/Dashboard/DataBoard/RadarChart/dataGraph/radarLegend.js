@@ -23,7 +23,7 @@ const radarLegend = (radius, labels, center, fontSizeSvg) => {
   }
 
   const anchors = ["middle", "start", "end"];
-
+  // will create a text element for all labels with the good positioning
   for (let index = 0; index < labels.length; index++) {
     const angle = (index * Math.PI * 2) / 6;
     const x = center.x + radius * Math.sin(angle);

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 
 export const Marks = ({
   data,
@@ -40,7 +41,7 @@ export const Marks = ({
       {dataOpacity.status && i === dataOpacity.id
         ? (fillState = 1)
         : (fillState = 0)}
-      <svg
+      <Svg
         height={innerHeight}
         width={xScale.bandwidth()}
         id={"svg" + i}
@@ -57,7 +58,7 @@ export const Marks = ({
           y={0}
           style={{}}
         ></rect>
-      </svg>
+      </Svg>
 
       <path
         key={xValue(d)}
@@ -89,3 +90,8 @@ export const Marks = ({
     </g>
   ));
 };
+const Svg = styled.svg`
+  fill: "#C4C4C480";
+  overflow: "inherit";
+  fill-opacity: fillState;
+`;

@@ -6,8 +6,16 @@ import radarDiagram from "./dataGraph/radarDiagram";
 import { scaleLinear, max } from "d3";
 
 const height = 263;
-
+/**
+ * user RadarChart Chart page. contain the Radar Chart component
+ *
+ * @name RadarChart
+ * @param {Object} userInfo - user information
+ * @returns {ReactElement} the D3 visualization of user performance
+ * @component
+ */
 export const RadarChart = ({ userInfo }) => {
+  //hook for get div with for responsive positioning
   const { width, ref } = useResizeDetector();
   const data = userInfo.performance;
   const labels = [
@@ -45,9 +53,18 @@ export const RadarChart = ({ userInfo }) => {
           style={{ backgroundColor: "#282D30", borderRadius: "5px" }}
         >
           <g transform={`translate(${0},${0})`}>
-            {radarDiagram(maxValue, data, yScale, center)}
-            {dataDiagram(data, radius, yScale, center)}
-            {radarLegend(radius, labels, center, fontSizeSvg)}
+            {
+              //this function return the svg scale
+              radarDiagram(maxValue, data, yScale, center)
+            }
+            {
+              //this function return the svg data shape
+              dataDiagram(data, radius, yScale, center)
+            }
+            {
+              //this function return the svg legend
+              radarLegend(radius, labels, center, fontSizeSvg)
+            }
           </g>
         </svg>
       )}

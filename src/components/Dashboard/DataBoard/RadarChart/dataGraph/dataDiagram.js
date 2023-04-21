@@ -2,6 +2,8 @@ const dataDiagram = (data, radius, yScale, center) => {
   let dataDiagram = [];
 
   let path = "";
+  // this will create a path
+  // each element of data will be an angle of shape
   for (let i = 0; i < data.length; i++) {
     const r = radius - yScale(data[i]);
     const angle = (i * Math.PI * 2) / data.length;

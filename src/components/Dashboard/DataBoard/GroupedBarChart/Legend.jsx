@@ -1,53 +1,31 @@
 import React from "react";
+import styled from "styled-components";
 
 function Legend({ marginLeft, innerWidth }) {
   return (
     <g>
-      <text
-        x={marginLeft}
-        y={30}
-        style={{
-          textAnchor: "start",
-          fontSize: "15px",
-          fontFamily: "roboto",
-          fontWeight: 500,
-        }}
-      >
+      <Text x={marginLeft} y={30}>
         Activité quotidienne
-      </text>
+      </Text>
       <g transform={`translate(${innerWidth - 650})`}>
         <circle cx="490" cy="25" r="4" fill="#282D30" />
-        <text
-          x="500"
-          y={30}
-          style={{
-            textAnchor: "start",
-            fontSize: "14px",
-            fontFamily: "roboto",
-            fontWeight: 500,
-            fill: "#74798C",
-          }}
-        >
+        <Text x="500" y={30} fill="#74798C">
           Poids (kg)
-        </text>
+        </Text>
 
         <circle cx="600" cy="25" r="4" fill="#E60000" />
-        <text
-          x="610"
-          y={30}
-          style={{
-            textAnchor: "start",
-            fontSize: "14px",
-            fontFamily: "roboto",
-            fontWeight: 500,
-            fill: "#74798C",
-          }}
-        >
+        <Text x="610" y={30} fill="#74798C">
           Calories Brûlées (kCal)
-        </text>
+        </Text>
       </g>
     </g>
   );
 }
+const Text = styled.text`
+  text-anchor: "start";
+  font-size: "14px";
+  font-family: "roboto";
+  font-weight: 500;
+`;
 
 export default Legend;

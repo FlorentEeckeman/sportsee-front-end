@@ -18,11 +18,21 @@ import { svgPathProperties } from "svg-path-properties";
 const height = 263;
 const margin = { top: 100, right: 30, bottom: 63, left: 43 };
 let innerWidth = 258;
+/**
+ * user LineChart Chart page. contain the Linear Chart component
+ *
+ * @name LineChart
+ * @param {Object} userInfo - user information
+ * @returns {ReactElement} the D3 visualization of user sessions durations
+ * @component
+ */
+
 export const LineChart = ({ userInfo }) => {
   const data = userInfo.sessionsAverage;
   const [toolX, setToolX] = useState(null);
   const [toolY, setToolY] = useState(null);
   const [sessionTime, setSessionTime] = useState(null);
+  //hook for get div with for responsive positioning
   const { width, ref } = useResizeDetector();
 
   if (!data) {
@@ -36,10 +46,11 @@ export const LineChart = ({ userInfo }) => {
   const xValue = (d) => d.day;
   const yValue = (d) => d.sessionLength;
 
+  // first scaleBand for the line chart
   const xScale = scaleTime()
     .domain(extent(data, xValue))
     .range([0, innerWidth]);
-
+  // second scaleBand for the bottom axis
   const xScaleAxis = scaleBand()
     .domain(data.map(xValue))
     .range([0, innerWidth]);
@@ -57,6 +68,7 @@ export const LineChart = ({ userInfo }) => {
   const pathSvg = new svgPathProperties(lineGenerator);
 
   const handleMouseMove = (e) => {
+    //this function set the mouse position
     setCoord(setToolX, setToolY, setSessionTime, yScale, pathSvg, e);
   };
   return (

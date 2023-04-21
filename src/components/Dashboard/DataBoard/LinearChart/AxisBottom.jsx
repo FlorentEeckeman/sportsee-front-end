@@ -1,4 +1,6 @@
 import React from "react";
+import styled from "styled-components";
+
 export const AxisBottom = ({ xScale, innerHeight, tickFormat }) =>
   xScale.domain().map((tickValue, index) => (
     <g
@@ -6,21 +8,21 @@ export const AxisBottom = ({ xScale, innerHeight, tickFormat }) =>
       key={tickValue}
       transform={`translate(${xScale(tickValue)},0)`}
     >
-      <text
+      <Text
         key={tickValue + "text"}
         stroke="#ffffff84"
-        style={{
-          textAnchor: "end",
-          fontSize: "12px",
-          fontFamily: "Roboto",
-          fontWeight: 500,
-          mixBlendMode: "normal",
-        }}
         dy=".71em"
         y={innerHeight + 15}
         x={xScale.bandwidth() / 2}
       >
         {tickValue}
-      </text>
+      </Text>
     </g>
   ));
+const Text = styled.text`
+  text-anchor: "end";
+  font-size: "12px";
+  font-family: "Roboto";
+  font-weight: 500;
+  mix-blend-mode: "normal";
+`;
