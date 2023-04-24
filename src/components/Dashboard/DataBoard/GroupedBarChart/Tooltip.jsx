@@ -17,10 +17,8 @@ function Tooltip({ toolY, toolX, data, toolIndex }) {
         textAlign: "center",
       }}
     >
-      <div style={{ paddingBottom: "22px" }}>
-        {data[toolIndex].calories}kcal
-      </div>
-      <div>{data[toolIndex].kilogram}kg</div>
+      <div style={{ paddingBottom: "22px" }}>{data[toolIndex].kilogram}kg</div>
+      <div> {data[toolIndex].calories}kcal</div>
     </div>
   );
 }

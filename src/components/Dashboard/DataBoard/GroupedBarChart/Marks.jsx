@@ -72,7 +72,7 @@ export const Marks = ({
           `v+${yScale(yValueKilogram(d)) - radius} ` + // vertical movement
           `z`
         }
-        fill="#E60000"
+        fill="#282D30"
       ></path>
 
       <path
@@ -86,7 +86,7 @@ export const Marks = ({
           `v+${yScale(yValueCalories(d)) - radius} ` + // vertical movement
           `z`
         }
-        fill="#282D30"
+        fill="#E60000"
       ></path>
     </g>
   ));
