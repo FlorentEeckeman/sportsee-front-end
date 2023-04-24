@@ -1,10 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import NutritionCard from "./NutritionCard";
-import calorie from "../../../assets/Icon/nutrition/calorie";
-import chicken from "../../../assets/Icon/nutrition/chicken";
-import apple from "../../../assets/Icon/nutrition/apple";
-import burger from "../../../assets/Icon/nutrition/burger";
 
 /**
  * user Nutrition component. contain the Nutrition cards
