@@ -30,7 +30,7 @@ export const RadarChart = ({ userInfo }) => {
   const maxValue = max(data);
   let radius = width / 3;
   let fontSizeSvg = 12;
-
+  // change radius or fontSizeSvg for responsive positioning
   if (radius > 90) {
     radius = 90;
   }

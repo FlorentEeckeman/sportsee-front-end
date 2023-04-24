@@ -29,8 +29,11 @@ let innerWidth = 258;
 
 export const LineChart = ({ userInfo }) => {
   const data = userInfo.sessionsAverage;
+  // state for get x position for tooltip positioning
   const [toolX, setToolX] = useState(null);
+  // state for get y position for tooltip positioning
   const [toolY, setToolY] = useState(null);
+  // state for get minute value for tooltip
   const [sessionTime, setSessionTime] = useState(null);
   //hook for get div with for responsive positioning
   const { width, ref } = useResizeDetector();
@@ -59,6 +62,7 @@ export const LineChart = ({ userInfo }) => {
     .domain([0, max(data, yValue)])
     .range([innerHeight, 0]);
 
+  // create the svg line of chart
   const lineGenerator = line()
     .x((d) => xScale(d.day))
     .y((d) => yScale(d.sessionLength))

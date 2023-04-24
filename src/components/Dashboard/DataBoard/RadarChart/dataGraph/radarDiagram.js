@@ -1,7 +1,7 @@
 const radarDiagram = (maxValue, data, yScale, center) => {
   let val;
   let radarDiagram = [];
-  // this function create 5 hexagon for create le scale
+  // this function create 5 hexagon with different radius for create le scale
   for (val = 0; val <= maxValue; val += maxValue / 5) {
     let path = "";
     for (let i = 0; i <= data.length; i++) {

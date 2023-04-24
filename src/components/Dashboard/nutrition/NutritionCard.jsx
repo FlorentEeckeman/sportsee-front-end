@@ -4,14 +4,14 @@ import styled from "styled-components";
  * user NutritionCard Chart page. contain the Bar Chart component
  *
  * @name NutritionCard
- * @param {SVGElement} Svgicon - card icon svg
+ * @param {SVGElement} SvgIcon - card icon svg
  * @param {number} Count - number of nutriments
  *  @param {string} Type - nutriment type
  *  @param {string} colorIcon - card's color
  * @returns {ReactElement} nutrition Card with specific information
  * @component
  */
-function NutritionCard({ Svgicon, Count, Type, colorIcon }) {
+function NutritionCard({ SvgIcon, Count, Type, colorIcon }) {
   let measureType = "g";
   if (Type === "Calories") {
     measureType = "Kcal";
@@ -20,7 +20,7 @@ function NutritionCard({ Svgicon, Count, Type, colorIcon }) {
     <Div>
       <div className="nutritionCard-First">
         <DivIcon inputColor={colorIcon}>
-          <Svgicon className="nutritionCard-Icon" />
+          <SvgIcon className="nutritionCard-Icon" />
         </DivIcon>
       </div>
       <div className="nutritionCard-Second">

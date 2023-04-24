@@ -6,35 +6,28 @@ import chicken from "../../../assets/Icon/nutrition/chicken";
 import apple from "../../../assets/Icon/nutrition/apple";
 import burger from "../../../assets/Icon/nutrition/burger";
 
+/**
+ * user Nutrition component. contain the Nutrition cards
+ *
+ * @name Nutrition
+ * @param {Object} userInfo - user information
+ * @returns {ReactElement} - the 4 Nutrition cards
+ * @component
+ */
 function Nutrition({ userInfo }) {
-  return (
-    <Div>
+  let item = [];
+  for (var key in userInfo.keyData) {
+    item.push(
       <NutritionCard
-        Svgicon={calorie}
-        Count={userInfo.keyData.calorieCount}
-        Type={"Calories"}
-        colorIcon={"rgba(255, 0, 0, 0.07)"}
+        key={userInfo.keyData[key].type}
+        SvgIcon={userInfo.keyData[key].svg}
+        Count={userInfo.keyData[key].count}
+        Type={userInfo.keyData[key].type}
+        colorIcon={userInfo.keyData[key].color}
       />
-      <NutritionCard
-        Svgicon={chicken}
-        Count={userInfo.keyData.proteinCount}
-        Type={"Proteines"}
-        colorIcon={"rgba(74, 184, 255, 0.07)"}
-      />
-      <NutritionCard
-        Svgicon={apple}
-        Count={userInfo.keyData.carbohydrateCount}
-        Type={"Glucides"}
-        colorIcon={"rgba(249, 206, 35, 0.07)"}
-      />
-      <NutritionCard
-        Svgicon={burger}
-        Count={userInfo.keyData.lipidCount}
-        Type={"Lipides"}
-        colorIcon={"rgba(253, 81, 129, 0.07)"}
-      />
-    </Div>
-  );
+    );
+  }
+  return <Div>{item}</Div>;
 }
 const Div = styled.div`
   display: flex;

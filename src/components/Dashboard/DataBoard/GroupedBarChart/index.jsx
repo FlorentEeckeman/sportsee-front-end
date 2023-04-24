@@ -25,8 +25,11 @@ export const GroupedBarChart = ({ userInfo }) => {
   const data = userInfo.sessionsActivity;
   //hook for get div with for responsive positioning
   const { width, ref } = useResizeDetector();
+  // state for the Mark index
   const [toolIndex, setToolIndex] = useState(null);
+  // state for get x position for tooltip positioning
   const [toolX, setToolX] = useState(null);
+  // state for get y position for tooltip positioning
   const [toolY, setToolY] = useState(null);
 
   if (!data) {
@@ -34,8 +37,8 @@ export const GroupedBarChart = ({ userInfo }) => {
   }
 
   const innerHeight = height - margin.top - margin.bottom;
-
   innerWidth = width - 140;
+
   const xValue = (d) => d.day;
   const yValueCalories = (d) => d.calories;
   const yValueKilogram = (d) => d.kilogram;
