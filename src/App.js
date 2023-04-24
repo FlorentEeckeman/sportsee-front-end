@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
 import Header from "./components/Header";
@@ -9,12 +10,13 @@ import styled from "styled-components";
  * @returns {object}
  */
 function App() {
+  const [user, setUser] = useState(12);
   return (
     <BodyDiv>
       <Header />
       <MainDiv>
-        <NavBar />
-        <Dashboard />
+        <NavBar setUser={setUser} user={user} />
+        <Dashboard user={user} />
       </MainDiv>
     </BodyDiv>
   );

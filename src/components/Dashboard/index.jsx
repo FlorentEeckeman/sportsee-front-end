@@ -11,22 +11,22 @@ import { getUser } from "../../utils/dataFormat";
  * @component
  */
 
-function Dashboard() {
-  const [user, setUser] = useState();
+function Dashboard({ user }) {
+  const [userInfo, setUserInfo] = useState();
   useEffect(() => {
     const fetchUser = async () => {
-      const result = await getUser(18);
-      setUser(result);
+      const result = await getUser(user);
+      setUserInfo(result);
     };
     fetchUser();
-  }, []);
-  if (!user) {
+  }, [user]);
+  if (!userInfo) {
     return null;
   }
   return (
     <DashboardBody>
-      <TopDashboard userInfo={user} />
-      <CoreDashboard userInfo={user} />
+      <TopDashboard userInfo={userInfo} />
+      <CoreDashboard userInfo={userInfo} />
     </DashboardBody>
   );
 }

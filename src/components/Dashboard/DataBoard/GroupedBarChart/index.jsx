@@ -81,14 +81,12 @@ export const GroupedBarChart = ({ userInfo }) => {
                 yScale={yScale}
                 xScale={xScale}
                 xValue={xValue}
-                yValueCalories={yValueCalories}
-                yValueKilogram={yValueKilogram}
-                tooltipFormat={xAxisTickFormat}
                 innerHeight={innerHeight}
-                innerWidth={innerWidth}
                 setToolX={setToolX}
                 setToolY={setToolY}
                 setToolIndex={setToolIndex}
+                yValueCalories={yValueCalories}
+                yValueKilogram={yValueKilogram}
               />
             }
           </g>
